@@ -1,0 +1,488 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+}
+
+html, body {
+	overflow: hidden;
+	height: 100vh;
+}
+
+body #cdawrap {
+	justify-self: start; 
+}
+
+.cda-sponsor-link {
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+}
+
+.cda-sponsor-link::before {
+	content: '';
+	height: 1px;
+	width: 100%;
+	background: currentColor;
+	position: absolute;
+	top: 92%;
+	transition: transform 0.3s;
+	transform-origin: 0% 50%;
+}
+
+.cda-sponsor-link:hover::before {
+	transform: scaleX(0);
+	transform-origin: 100% 50%;
+}
+
+body {
+	margin: 0;
+	--color-text: #010300;
+	--color-bg: #76b272;
+	--color-link: #000;
+	--color-link-hover: #010300;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: halyard-display, sans-serif;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	will-change: background-color;
+}
+
+/* Page Loader */
+.js .loading::before,
+.js .loading::after {
+	content: '';
+	position: fixed;
+	z-index: 2000;
+}
+
+.js .loading::before {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-bg);
+}
+
+.js .loading::after {
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	margin: -30px 0 0 -30px;
+	border-radius: 50%;
+	opacity: 0.4;
+	background: var(--color-link);
+	animation: loaderAnim 0.7s linear infinite alternate forwards;
+
+}
+
+@keyframes loaderAnim {
+	to {
+		opacity: 1;
+		transform: scale3d(0.5,0.5,1);
+	}
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-link);
+	outline: none;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	outline: none;
+}
+
+/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+a:focus {
+	/* Provide a fallback style for browsers
+	 that don't support :focus-visible */
+	outline: none;
+	background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+	/* Remove the focus indicator on mouse-focus for browsers
+	 that do support :focus-visible */
+	background: transparent;
+}
+
+a:focus-visible {
+	/* Draw a very noticeable focus style for
+	 keyboard-focus on browsers that do support
+	 :focus-visible */
+	outline: 2px solid red;
+	background: transparent;
+}
+
+.oh {
+	position: relative;
+	overflow: hidden;
+}
+
+.oh__inner {
+	display: inline-block;
+	will-change: transform;
+}
+
+.unbutton {
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+}
+
+.unbutton:focus {
+	outline: none;
+}
+
+.frame {
+	position: fixed;
+	text-align: center;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	display: grid;
+	align-content: space-between;
+	width: 100%;
+	max-width: none;
+	height: 100vh;
+	padding: 1rem;
+	pointer-events: none;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: auto 1fr auto auto;
+	grid-template-areas: '... menu' '... ...' 'title ...' 'sponsor ...';
+}
+
+.frame a,
+.frame button {
+	pointer-events: auto;
+}
+
+.frame__title {
+	grid-area: title;
+	justify-content: flex-start;
+	display: flex;
+	margin-bottom: 0.5rem;
+}
+
+.frame__title-main {
+	font-size: 1rem;
+	margin: 0;
+	font-weight: 300;
+}
+
+.frame__title-back {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+}
+
+.frame__title-back span {
+	display: none;
+}
+
+.frame__title-back svg {
+	fill: var(--color-link);
+}
+
+.frame__title-back:hover svg,
+.frame__title-back:focus svg {
+	fill: var(--color-link-hover);
+}
+
+.frame__title,
+.frame .cdawrap {
+	transition: opacity 0.3s;
+}
+
+.frame--hidden .frame__title,
+.frame--hidden .frame .cdawrap {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.button-menu {
+	z-index: 100;
+	width: 1.65rem;
+	height: 0.65rem;
+	color: var(--color-menu);
+	cursor: not-allowed;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	grid-area: menu;
+	align-self: start;
+	justify-self: end;
+}
+
+.content {
+	display: grid;
+	place-items: center;
+	width: 100%;
+}
+
+.content__item {
+	height: 100vh;
+	width: 100%;
+	padding-top: 1rem;
+	display: grid;
+	align-items: center;
+}
+
+.content__item-title {
+	grid-area: 1 / 1 / -1 / -1;
+	margin: 0;
+	cursor: default;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	line-height: 0.85;
+	font-size: 15.5vw;
+	text-transform: uppercase;
+	font-family: ivymode, sans-serif;
+	font-weight: 200;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.content__item-title span {
+	position: relative;
+	z-index: 100;
+	display: block;
+	will-change: transform, opacity;
+}
+
+
+
+.content__item-img {
+	background-size: cover;
+	background-position: 50% 50%;
+	align-self: center;
+	justify-self: center;
+	grid-area: 1 / 1 / -1 / -1;
+	height: 50vh;
+	width: 80vw;
+	will-change: transform;
+}
+
+.content__enter {
+	grid-area: 1 / 1 / -1 / -1;
+	align-self: center;
+	justify-self: center;
+	color: #fff;
+	font-size: 2rem;
+	cursor: pointer;
+	font-family: ivymode, sans-serif;
+	font-weight: 200;
+	z-index: 1;
+}
+
+.button-circle {
+	width: 200px;
+	height: 200px;
+	display: grid;
+	place-items: center;
+}
+
+.button-circle__text {
+	line-height: 1;
+	overflow: hidden;
+	grid-area: 1 / 1 / -1 / -1;
+}
+
+.button-circle__text span {
+	display: block;
+	padding: 0 0.5rem;
+}
+
+.button-circle__text span::before {
+	position: absolute;
+	content: attr(data-text);
+	bottom: 100%;
+	font-style: italic;
+	width: 100%;
+	text-align: center;
+	left: 0;
+}
+
+.button-circle:hover .button-circle__text span {
+	transform: translate3d(0,100%,0);
+}
+
+.button-circle__deco {
+	width: 100%;
+	height: 100%;
+	grid-area: 1 / 1 / -1 / -1;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1px;
+}
+
+.button-circle:hover .button-circle__deco {
+	transform: scale3d(1.4,1.4,1);
+}
+
+.button-circle__text span,
+.button-circle__deco {
+	transition: transform 0.3s ease-out;
+}
+
+.button-circle:hover .button-circle__text span,
+.button-circle:focus .button-circle__text span,
+.button-circle:hover .button-circle__deco,
+.button-circle:focus .button-circle__deco {
+	transition: transform 0.4s cubic-bezier(0.7,0,0.3,1);
+}
+
+.grid {
+	position: fixed;
+	counter-reset: grid-counter;
+	top: calc(50vh - 40vw);
+	left: 0;
+	width: 100%;
+	height: 80vw;
+	display: grid;
+	grid-template-columns: repeat(100,1fr);
+	grid-template-rows: repeat(100,1fr);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.grid--open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.grid__item {
+	position: relative;
+	display: grid;
+	grid-template-areas: 'grid-img' 'grid-title';
+	grid-template-rows: 100% auto;
+	grid-column: var(--c) / span var(--cs);
+	grid-row: var(--r) / span  var(--rs);
+	will-change: opacity, transform;
+}
+
+.grid__item--title {
+	grid-column: 5 / span 25;
+	grid-row: 5 / span 14;
+	margin: 0;
+	position: relative;
+	z-index: 100;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	font-family: ivymode, sans-serif;
+	font-weight: 200;
+	text-transform: uppercase;
+	font-size: clamp(1.5rem,3vw,3.5rem);
+    line-height: 1;
+}
+
+.grid__item--title span {
+	will-change: transform, opacity;
+}
+
+.grid__item--title span:last-child {
+	margin-left: 2rem;
+}
+
+.grid__item--back {
+	z-index: 100;
+	grid-column: 5 / span 6;
+	grid-row: 20 / span 10;
+}
+
+.button-back {
+	cursor: pointer;
+	display: flex;
+	padding: 0.5rem 0;
+	align-self: start;
+}
+
+.button-back svg {
+	pointer-events: none;
+	stroke: #000;
+	stroke-width: 1px;
+	transition: stroke 0.3s;
+}
+
+.button-back:hover svg {
+	stroke: #989898;
+}
+
+.grid__item .content__item-img,
+.grid__item-img {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.grid__item-title {
+	font-size: 0.9rem;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	margin: 0.5rem 0 0 0;
+	white-space: nowrap;
+	font-weight: 300;
+	line-height: 1;
+	visibility: hidden;
+}
+
+.grid__item-title--above {
+	top: auto;
+	bottom: 100%;
+	margin: 0 0 0.5rem 0;
+}
+
+.grid__item-title span::before {
+	counter-increment: grid-counter;                   
+	content: counter(grid-counter, decimal-leading-zero) "\00a0 \2014 \00a0" ;
+}
+
+@media screen and (min-width: 53em) {
+	.frame {
+		text-align: left;
+		padding: 2.5rem;
+	}
+	.grid {
+		height: 100%;
+		top: 0;
+	}
+	.grid__item-title {
+		visibility: visible;
+	}
+	.content__item {
+		padding: 0;
+	}
+	.content__item-img {
+		height: 80vh;
+		width: 60vw;
+		max-width: 600px;
+	}
+	.content__item-title {
+		justify-content: space-between;
+	}
+	.content__item-title span:first-child {
+		margin: -3vw 0 0 -10vw;
+	}
+
+	.content__item-title span:last-child {
+		margin: 0 -10vw -3vw 0;
+	}
+}
