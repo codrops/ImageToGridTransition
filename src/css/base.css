@@ -13,32 +13,6 @@ html, body {
 	height: 100vh;
 }
 
-body #cdawrap {
-	justify-self: start; 
-}
-
-.cda-sponsor-link {
-	white-space: nowrap;
-	overflow: hidden;
-	position: relative;
-}
-
-.cda-sponsor-link::before {
-	content: '';
-	height: 1px;
-	width: 100%;
-	background: currentColor;
-	position: absolute;
-	top: 92%;
-	transition: transform 0.3s;
-	transform-origin: 0% 50%;
-}
-
-.cda-sponsor-link:hover::before {
-	transform: scaleX(0);
-	transform-origin: 100% 50%;
-}
-
 body {
 	margin: 0;
 	--color-text: #010300;
