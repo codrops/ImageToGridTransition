@@ -13,6 +13,35 @@ html, body {
 	height: 100vh;
 }
 
+body #cdawrap {
+	justify-self: start; 
+}
+
+.cda-sponsor-link,
+.frame__title-prev {
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+}
+
+.cda-sponsor-link::before,
+.frame__title-prev::before {
+	content: '';
+	height: 1px;
+	width: 100%;
+	background: currentColor;
+	position: absolute;
+	top: 92%;
+	transition: transform 0.3s;
+	transform-origin: 0% 50%;
+}
+
+.cda-sponsor-link:hover::before,
+.frame__title-prev:hover::before {
+	transform: scaleX(0);
+	transform-origin: 100% 50%;
+}
+
 body {
 	margin: 0;
 	--color-text: #010300;
@@ -146,7 +175,9 @@ a:focus-visible {
 	grid-area: title;
 	justify-content: flex-start;
 	display: flex;
+	flex-wrap: wrap;
 	margin-bottom: 0.5rem;
+	width: 12rem;
 }
 
 .frame__title-main {
@@ -172,6 +203,10 @@ a:focus-visible {
 .frame__title-back:hover svg,
 .frame__title-back:focus svg {
 	fill: var(--color-link-hover);
+}
+
+.frame__title-prev {
+	margin-top: 0.5rem;
 }
 
 .frame__title,
